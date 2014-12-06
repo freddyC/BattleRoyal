@@ -23,6 +23,10 @@ public class Character {
 		vitals.increaseVital(Stat.Speed, vitals.getVital(Stat.Speed) + speed);
 	}
 
+	public int getVital (Stat stat) {
+		return vitals.getVital(stat);
+	}
+	
 	public String getName() {
 		return name;
 	}

@@ -39,8 +39,6 @@ public class ControllerStartupScreen {
 		ControllerPlayerListItem playerLI = new ControllerPlayerListItem();
 		playerLI.setplayer(player);
 		playerLI.setStartupController(this);
-		System.out.println(playerLI);
-		System.out.println(playerLI.getPlayer());
 		players_list.getChildren().add(playerLI);
 	}
 	
