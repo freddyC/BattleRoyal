@@ -1,18 +1,20 @@
 package application;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 
 public class ControllerStartupScreen {
 	StageController stage;
+	ModelPlayers ms;
 	
 	@FXML
 	private VBox players_list;
@@ -20,25 +22,34 @@ public class ControllerStartupScreen {
 	@FXML
 	private void initialize () throws IOException {
 		stage = StageController.getInstance();
-		ModelStarter ms = ModelStarter.getInstance();
+		ms = ModelPlayers.getInstance();
 		List<Character> players = ms.getPlayers();
-		for (Character p : players) {
-			createPlayer(p);
+		for (int i = 0; i < players.size(); ++i) {
+			addPlayerToList(players.get(i), i);
 		}
 	}
 	
 	@FXML
 	private void addPlayer() throws IOException {
-		System.out.println("Create Player");
 		stage.changeView("ViewCreateUser.fxml");
 	}
 	
-	private void createPlayer (Character player) {
-		players_list.getChildren().add(new Button("test"));
+	
+	private void addPlayerToList (Character player, int i) throws IOException {
+		ControllerPlayerListItem playerLI = new ControllerPlayerListItem();
+		playerLI.setplayer(player);
+		playerLI.setStartupController(this);
+		System.out.println(playerLI);
+		System.out.println(playerLI.getPlayer());
+		players_list.getChildren().add(playerLI);
 	}
 	
+	@FXML
 	private void startGame() {
-		
 	}
 	
+	public void removePlayer(ControllerPlayerListItem playerLI) {
+		players_list.getChildren().remove(playerLI);
+		ms.removePlayer(playerLI.getPlayer());
+	}
 }

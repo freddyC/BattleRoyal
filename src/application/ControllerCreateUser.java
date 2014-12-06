@@ -101,12 +101,13 @@ public class ControllerCreateUser {
 		player.initVitals( 	  (int) hp_slider.getValue()
 							, (int) mana_slider.getValue()
 							, (int) stamina_slider.getValue()
-							, (int) + intelect_slider.getValue()
-							, (int) + speed_slider.getValue() 
+							, (int) intelect_slider.getValue()
+							, (int) speed_slider.getValue() 
 						);
 		player.createArmor();
 		player.createWeapon();
-		ModelStarter ms = ModelStarter.getInstance();
+		player.setName(name_field.getText());
+		ModelPlayers ms = ModelPlayers.getInstance();
 		ms.addPlayer(player);
 	}
 

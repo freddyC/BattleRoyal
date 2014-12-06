@@ -7,11 +7,11 @@ public class Character {
 	private Equipment armor;
 	private Element element;
 	private String name;
-	private int experience;
+	private int experience = 0;
 	
 	public void initVitals (int hp, int mana, int stamina, int intelect, int speed) {
 		if (vitals != null) {
-			System.out.println("Can not init vitals if they already exist");
+			System.out.println("you can't init vitals if they already exist silly");
 			return;
 		}
 		
@@ -38,8 +38,6 @@ public class Character {
 	public void setElement(Element element) {
 		this.element = element;
 	}
-
-	
 	
 	void createWeapon () {
 		weapon = new Equipment(vitals.getVital(Stat.Intelect));

@@ -3,18 +3,18 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModelStarter {
-	private static ModelStarter instance = null;
+public class ModelPlayers {
+	private static ModelPlayers instance = null;
 	private List<Character> players;
 	
-	protected ModelStarter () {
+	protected ModelPlayers () {
 		// this is to keep it a singleton
 		players = new ArrayList <Character> ();
 	}
 	
-	public static ModelStarter getInstance () {
+	public static ModelPlayers getInstance () {
 		if (instance == null) {
-			instance = new ModelStarter();
+			instance = new ModelPlayers();
 		}
 		return instance;
 	}
@@ -25,5 +25,9 @@ public class ModelStarter {
 	
 	public void addPlayer (Character player) {
 		players.add(player);
+	}
+	
+	public void removePlayer (Character player) {
+		players.remove(player);
 	}
 }
