@@ -18,7 +18,7 @@ public class GameLoop {
 	}
 	
 
-	public void GameLoop() {
+	public GameLoop() {
 		paused = false;
 		actions = new ArrayList<Action> ();
 	}

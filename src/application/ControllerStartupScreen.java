@@ -1,45 +1,47 @@
 package application;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 
-public class ControllerStartupScreen {
-	StageController stage;
-	ModelPlayers ms;
+public class ControllerStartupScreen implements Watcher {
+	private StageController stage;
+	private ModelPlayers ms;
+	private List <ControllerPlayerListItem> playersList;
+	private ObservableList<ControllerPlayerListItem> obsPlayersList;
+	
 	
 	@FXML
-	private VBox players_list;
-	
+	private ListView players_list;
+		
 	@FXML
 	private void initialize () throws IOException {
 		stage = StageController.getInstance();
 		ms = ModelPlayers.getInstance();
-		List<Character> players = ms.getPlayers();
-		for (int i = 0; i < players.size(); ++i) {
-			addPlayerToList(players.get(i), i);
-		}
+		ms.subscribe(this);
+		resetLists();
+		renderList();
+		
+//		for (int i = 0; i < 5; ++i) {
+//			Character p = new Character();
+//			p.setName("" + i);
+//			p.setElement(Element.Fire);
+//			p.updateAllVitals(i, i, i, i, i);
+//			ms.addPlayer(p);
+//		}
 	}
 	
 	@FXML
-	private void addPlayer() throws IOException {
+	private void startCreatingNewPlayer() throws IOException {
 		stage.changeView("ViewCreateUser.fxml");
-	}
-	
-	
-	private void addPlayerToList (Character player, int i) throws IOException {
-		ControllerPlayerListItem playerLI = new ControllerPlayerListItem();
-		playerLI.setplayer(player);
-		playerLI.setStartupController(this);
-		players_list.getChildren().add(playerLI);
 	}
 	
 	@FXML
@@ -47,7 +49,28 @@ public class ControllerStartupScreen {
 	}
 	
 	public void removePlayer(ControllerPlayerListItem playerLI) {
-		players_list.getChildren().remove(playerLI);
 		ms.removePlayer(playerLI.getPlayer());
+	}
+
+	@Override
+	public void fire(String watchedName) {
+		resetLists();
+		renderList();
+	}
+
+	private void renderList () {
+		List<Character> players = ms.getPlayers();
+		for (Character player : players) {
+			ControllerPlayerListItem playerLI = new ControllerPlayerListItem();
+			playerLI.setplayer(player);
+			playerLI.setStartupController(this);
+			playersList.add(playerLI);
+		}		
+	}
+	
+	private void resetLists() {
+		playersList = new ArrayList <ControllerPlayerListItem> ();
+		obsPlayersList = FXCollections.observableList(playersList);
+		players_list.setItems(obsPlayersList);
 	}
 }

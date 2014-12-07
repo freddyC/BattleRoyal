@@ -25,4 +25,12 @@ public class Vitals {
 	public void decreaseVital (Stat vital, int increase) {
 		vitals.put(vital, vitals.get(vital) - increase);
 	}
+
+	public void updateAllVitals(int hp, int mana, int stamina, int intelect, int speed) {
+		increaseVital(Stat.HP, hp);
+		increaseVital(Stat.Mana, mana);
+		increaseVital(Stat.Stamina, stamina);
+		increaseVital(Stat.Intelect, intelect);
+		increaseVital(Stat.Speed, speed);
+	}
 }

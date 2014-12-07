@@ -9,18 +9,14 @@ public class Character {
 	private String name;
 	private int experience = 0;
 	
-	public void initVitals (int hp, int mana, int stamina, int intelect, int speed) {
-		if (vitals != null) {
-			System.out.println("you can't init vitals if they already exist silly");
-			return;
-		}
-		
+	public Character () {
 		vitals = new Vitals();
-		vitals.increaseVital(Stat.HP, vitals.getVital(Stat.HP) * hp);
-		vitals.increaseVital(Stat.Mana, vitals.getVital(Stat.Mana) * mana);
-		vitals.increaseVital(Stat.Stamina, vitals.getVital(Stat.Stamina) + stamina);
-		vitals.increaseVital(Stat.Intelect, vitals.getVital(Stat.Intelect) + intelect);
-		vitals.increaseVital(Stat.Speed, vitals.getVital(Stat.Speed) + speed);
+		weapon = new Equipment(vitals.getVital(Stat.Intelect));
+		armor = new Equipment(vitals.getVital(Stat.Intelect));
+	}
+
+	public void updateAllVitals (int hp, int mana, int stamina, int intelect, int speed) {
+		vitals.updateAllVitals (hp, mana, stamina, intelect, speed);
 	}
 
 	public int getVital (Stat stat) {
@@ -41,13 +37,5 @@ public class Character {
 
 	public void setElement(Element element) {
 		this.element = element;
-	}
-	
-	void createWeapon () {
-		weapon = new Equipment(vitals.getVital(Stat.Intelect));
-	}
-	
-	void createArmor () {
-		armor = new Equipment(vitals.getVital(Stat.Intelect));
-	}
+	}	
 }

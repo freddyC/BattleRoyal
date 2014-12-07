@@ -19,8 +19,8 @@ import javafx.scene.control.TextField;
 import application.Element;
 
 public class ControllerCreateUser {
-	private final int MAX_POINTS = 250;
 	
+	private final int MAX_POINTS = 250;
 	private List <Element> els = new ArrayList <Element> ();
 	private ObservableList<Element> elements = FXCollections.observableList(els);
 	private StageController stage;
@@ -98,14 +98,12 @@ public class ControllerCreateUser {
 	private void createUser() {
 		Character player = new Character();
 		player.setElement( (Element) elemental_selecter.getValue());
-		player.initVitals( 	  (int) hp_slider.getValue()
-							, (int) mana_slider.getValue()
-							, (int) stamina_slider.getValue()
-							, (int) intelect_slider.getValue()
-							, (int) speed_slider.getValue() 
-						);
-		player.createArmor();
-		player.createWeapon();
+		player.updateAllVitals((int) hp_slider.getValue()
+							 , (int) mana_slider.getValue()
+							 , (int) stamina_slider.getValue()
+							 , (int) intelect_slider.getValue()
+							 , (int) speed_slider.getValue() 
+							 );
 		player.setName(name_field.getText());
 		ModelPlayers ms = ModelPlayers.getInstance();
 		ms.addPlayer(player);

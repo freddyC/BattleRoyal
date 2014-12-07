@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.media.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,13 +10,13 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: BDBDBD;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerStartupScreen">
    <children>
-      <VBox fx:id="players_list" layoutX="250.0" layoutY="44.0" prefHeight="550.0" prefWidth="1100.0" style="-fx-background-color: white; -fx-max-height: 550;" AnchorPane.bottomAnchor="143.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="75.0" />
-      <Button layoutX="50.0" layoutY="696.0" mnemonicParsing="false" onAction="#addPlayer" prefHeight="41.0" prefWidth="159.0" text="Add Player" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
+      <Button layoutX="50.0" layoutY="696.0" mnemonicParsing="false" onAction="#startCreatingNewPlayer" prefHeight="41.0" prefWidth="159.0" text="Add Player" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
       <Button layoutX="991.0" layoutY="696.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="159.0" text="Start Game" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="14.0" prefHeight="47.0" prefWidth="303.0" text="Battle Royal Players" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <ListView fx:id="players_list" editable="true" layoutX="500.0" layoutY="276.0" style="-fx-background-radius: 30;" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="75.0" />
    </children>
 </AnchorPane>
