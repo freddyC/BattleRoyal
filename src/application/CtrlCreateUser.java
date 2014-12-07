@@ -7,23 +7,19 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import application.Element;
 
-public class ControllerCreateUser {
+public class CtrlCreateUser {
 	
 	private final int MAX_POINTS = 250;
 	private List <Element> els = new ArrayList <Element> ();
 	private ObservableList<Element> elements = FXCollections.observableList(els);
-	private StageController stage;
+	private CtrlStage stage;
 	private int points;
 	
 	@FXML
@@ -36,14 +32,14 @@ public class ControllerCreateUser {
 	private ProgressBar attribute_indicator_progress;
 	
 	@FXML
-	private ChoiceBox elemental_selecter;
+	private ChoiceBox<Element> elemental_selecter;
 		
 	@FXML
 	TextField name_field;
 	
 	@FXML
 	private void initialize () throws IOException {
-		stage = StageController.getInstance();
+		stage = CtrlStage.getInstance();
 		setupSlider(hp_slider);
 		setupSlider(mana_slider);
 		setupSlider(stamina_slider);
@@ -96,7 +92,7 @@ public class ControllerCreateUser {
 	}
 	
 	private void createUser() {
-		Character player = new Character();
+		GameCharacter player = new GameCharacter();
 		player.setElement( (Element) elemental_selecter.getValue());
 		player.updateAllVitals((int) hp_slider.getValue()
 							 , (int) mana_slider.getValue()

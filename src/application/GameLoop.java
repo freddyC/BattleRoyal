@@ -5,8 +5,8 @@ import java.util.List;
 
 public class GameLoop {
 	private static GameLoop instance = null;
-	private List<Action> actions;
-	private long currentTime, lastTime;
+	private List<GameAction> actions;
+	private long lastTime;
 	private boolean paused;
 	
 	
@@ -20,34 +20,33 @@ public class GameLoop {
 
 	public GameLoop() {
 		paused = false;
-		actions = new ArrayList<Action> ();
+		actions = new ArrayList<GameAction> ();
 	}
 	
 	private void startLoop(long now) throws InterruptedException {
 		if (actions.size() == 0 || paused) return;
-		currentTime = now;
 		lastTime = lastTime == 0 ? now : lastTime;
-		act(lastTime - now);
+		updateTimeLeft (lastTime - now);
 		startLoop(System.currentTimeMillis());
 	}
 	
-	private void act(long ellapsedTime) {
-		for (Action a : actions) {
-			a.decrament(ellapsedTime);
+	private void updateTimeLeft (long ellapsedTime) {
+		for (GameAction action : actions) {
+			// TODO verify that when action is ready the remove from the Action class doesn't mess up this loop 
+			action.decrament(ellapsedTime);
 		}
 	}
 
-	public void addAction (Action a) throws InterruptedException {
+	public void addAction (GameAction a) throws InterruptedException {
 		actions.add(a);
 		if (actions.size() == 1) {
 			startLoop(System.currentTimeMillis());
 		}
 	}
 
-	public void removeAction (Action a) {
+	public void removeAction (GameAction a) {
 		actions.remove(a);
 		if (actions.size() <= 0) {
-			currentTime = 0;
 			lastTime = 0;
 		}
 	}
@@ -59,7 +58,6 @@ public class GameLoop {
 	public void resume() throws InterruptedException {
 		long now = System.currentTimeMillis();
 		paused = false;
-		currentTime = now;
 		lastTime = now;
 		startLoop(now);
 	}

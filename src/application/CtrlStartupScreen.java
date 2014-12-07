@@ -8,35 +8,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.VBox;
 
 
-public class ControllerStartupScreen implements Watcher {
-	private StageController stage;
+public class CtrlStartupScreen implements UtilWatcher {
+	private CtrlStage stage;
 	private ModelPlayers ms;
-	private List <ControllerPlayerListItem> playersList;
-	private ObservableList<ControllerPlayerListItem> obsPlayersList;
+	private List <CtrlPlayerListItem> playersList;
+	private ObservableList<CtrlPlayerListItem> obsPlayersList;
 	
 	
 	@FXML
-	private ListView players_list;
+	private ListView<CtrlPlayerListItem> players_list;
 		
 	@FXML
 	private void initialize () throws IOException {
-		stage = StageController.getInstance();
+		stage = CtrlStage.getInstance();
 		ms = ModelPlayers.getInstance();
-		ms.subscribe(this);
+		ms.subscribeToPlayersList(this);
 		resetLists();
 		renderList();
-		
-//		for (int i = 0; i < 5; ++i) {
-//			Character p = new Character();
-//			p.setName("" + i);
-//			p.setElement(Element.Fire);
-//			p.updateAllVitals(i, i, i, i, i);
-//			ms.addPlayer(p);
-//		}
 	}
 	
 	@FXML
@@ -45,10 +35,11 @@ public class ControllerStartupScreen implements Watcher {
 	}
 	
 	@FXML
-	private void startGame() {
+	private void startGame() throws IOException  {
+		stage.changeView("ViewGameBoard.fxml");
 	}
 	
-	public void removePlayer(ControllerPlayerListItem playerLI) {
+	public void removePlayer(CtrlPlayerListItem playerLI) {
 		ms.removePlayer(playerLI.getPlayer());
 	}
 
@@ -59,9 +50,9 @@ public class ControllerStartupScreen implements Watcher {
 	}
 
 	private void renderList () {
-		List<Character> players = ms.getPlayers();
-		for (Character player : players) {
-			ControllerPlayerListItem playerLI = new ControllerPlayerListItem();
+		List<GameCharacter> players = ms.getPlayers();
+		for (GameCharacter player : players) {
+			CtrlPlayerListItem playerLI = new CtrlPlayerListItem();
 			playerLI.setplayer(player);
 			playerLI.setStartupController(this);
 			playersList.add(playerLI);
@@ -69,7 +60,7 @@ public class ControllerStartupScreen implements Watcher {
 	}
 	
 	private void resetLists() {
-		playersList = new ArrayList <ControllerPlayerListItem> ();
+		playersList = new ArrayList <CtrlPlayerListItem> ();
 		obsPlayersList = FXCollections.observableList(playersList);
 		players_list.setItems(obsPlayersList);
 	}

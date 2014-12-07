@@ -2,7 +2,7 @@ package application;
 
 import java.util.Random;
 
-public class Tools {
+public class UtilTools {
 
 	public static int randomInt(int min, int max) {
 		Random rand = new Random();

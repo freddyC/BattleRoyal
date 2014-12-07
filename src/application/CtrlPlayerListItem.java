@@ -8,14 +8,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-public class ControllerPlayerListItem extends AnchorPane {
-	private Character player;
-	private ControllerStartupScreen startupController;	
+public class CtrlPlayerListItem extends AnchorPane {
+	private GameCharacter player;
+	private CtrlStartupScreen startupController;	
 	
 	@FXML
 	Label name, element, hp, mana, stamina, intelect, speed;
 	
-	public ControllerPlayerListItem() {
+	public CtrlPlayerListItem() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ViewPlayerListItem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -27,22 +27,22 @@ public class ControllerPlayerListItem extends AnchorPane {
         }
 	}
 	
-	public Character getPlayer() {
+	public GameCharacter getPlayer() {
 		return player;
 	}
 
-	public void setplayer (Character p) {
+	public void setplayer (GameCharacter p) {
 		player = p;
 		name.setText("Name: " + player.getName());
 		element.setText("Element: " + player.getElement());
-		hp.setText("HP: " + player.getVital(Stat.HP));
-		mana.setText("Mana: " + player.getVital(Stat.Mana));
-		stamina.setText("Stamina: " + player.getVital(Stat.Stamina));
-		intelect.setText("Intelect: " + player.getVital(Stat.Intelect));
-		speed.setText("Speed: " + player.getVital(Stat.Speed));
+		hp.setText("HP: " + player.getVital(GameStat.HP));
+		mana.setText("Mana: " + player.getVital(GameStat.Mana));
+		stamina.setText("Stamina: " + player.getVital(GameStat.Stamina));
+		intelect.setText("Intelect: " + player.getVital(GameStat.Intelect));
+		speed.setText("Speed: " + player.getVital(GameStat.Speed));
 	}
 
-	public void setStartupController(ControllerStartupScreen controller) {
+	public void setStartupController(CtrlStartupScreen controller) {
 		startupController = controller;
 	}
 

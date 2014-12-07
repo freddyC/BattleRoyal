@@ -7,19 +7,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class StageController {
+public class CtrlStage {
 	
-	private static StageController instance = null;
+	private static CtrlStage instance = null;
 	private static Parent current;
 	private static Stage rootStage;
 	
-	protected StageController() throws IOException {
+	protected CtrlStage() throws IOException {
 		// only here to keep this a singleton
    }
 
-   public static StageController getInstance() throws IOException {
+   public static CtrlStage getInstance() throws IOException {
       if(instance == null) {
-         instance = new StageController();
+         instance = new CtrlStage();
       }
       return instance;
    }

@@ -5,13 +5,13 @@ import java.util.List;
 
 public class ModelPlayers {
 	private static ModelPlayers instance = null;
-	private List<Character> players;
-	private Watched playersCount;
+	private List<GameCharacter> players;
+	private UtilWatched playersCount;
 	
 	protected ModelPlayers () {
 		// this is to keep it a singleton
-		players = new ArrayList <Character> ();
-		playersCount = new Watched("playersCount");
+		players = new ArrayList <GameCharacter> ();
+		playersCount = new UtilWatched("playersCount");
 	}
 	
 	public static ModelPlayers getInstance () {
@@ -21,24 +21,24 @@ public class ModelPlayers {
 		return instance;
 	}
 	
-	public List<Character> getPlayers () {
+	public List<GameCharacter> getPlayers () {
 		return players;
 	}
 	
-	public void subscribe (Watcher w) {
+	public void subscribeToPlayersList (UtilWatcher w) {
 		playersCount.subscribe(w);
 	}
 	
-	public void unsubscribe (Watcher w) {
+	public void unsubscribeToPlayersList (UtilWatcher w) {
 		playersCount.unsubscribe(w);
 	}
 	
-	public void addPlayer (Character player) {
+	public void addPlayer (GameCharacter player) {
 		players.add(player);
 		playersCount.fire();
 	}
 	
-	public void removePlayer (Character player) {
+	public void removePlayer (GameCharacter player) {
 		players.remove(player);
 		playersCount.fire();
 	}

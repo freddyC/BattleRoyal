@@ -4,19 +4,17 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.ListView;
 
-public class ControllerGameBoard {
+public class CtrlGameBoard {
 	@FXML
 	private Label next_up_title;
 	
 	@FXML
-	private VBox events_queue, action_picker, turn_queue, history;
+	ListView turn_queue, action_queue, history_stack;
 
 	@FXML
 	private void initialize () throws IOException {
 		
 	}
-
 }

@@ -8,7 +8,7 @@ public class Equipment {
 
 	public Equipment(int intelect) {
 		super();
-		element = Tools.getRandomElement();
+		element = UtilTools.getRandomElement();
 		forgings = 0;
 		forge(intelect);
 	}
@@ -23,11 +23,11 @@ public class Equipment {
 	
 	public void forge (int intelect) {
 		forgings++;
-		strength += Tools.randomInt(1 + intelect, 5 + intelect);
+		strength += UtilTools.randomInt(1 + intelect, 5 + intelect);
 	}
 	
 	public Equipment reForge (int intelect) {
-		return generateEquipment(forgings - Tools.randomInt(0, 3), intelect);
+		return generateEquipment(forgings - UtilTools.randomInt(0, 3), intelect);
 	}
 	
 	
@@ -39,7 +39,7 @@ public class Equipment {
 		Equipment eq = new Equipment(intelect);
 		
 		for (int i = 0; i < level; ++i) {
-			eq.strength += Tools.randomInt(2, 6);
+			eq.strength += UtilTools.randomInt(2, 6);
 		}
 		
 		return eq;

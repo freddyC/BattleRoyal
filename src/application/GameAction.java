@@ -1,10 +1,15 @@
 package application;
 
-public abstract class Action {
+public abstract class GameAction {
 	private long prepTimeLeft;
 	private GameLoop gl;
 	
-	public Action () {
+//	To be overwritten
+	protected abstract void update();
+	protected abstract void performAction();
+	
+	public GameAction (long waitTime) {
+		prepTimeLeft = waitTime;
 		gl = GameLoop.getInstance();
 	}
 	
@@ -17,10 +22,8 @@ public abstract class Action {
 		if (prepTimeLeft <= 0) {
 			this.performAction();
 			gl.removeAction(this);
+		} else {
+			update();
 		}
-	}
-	
-	private void performAction() {
-		
 	}
 }

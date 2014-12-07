@@ -1,7 +1,5 @@
 package application;
 
-import java.util.List;
-
-public interface Watcher {
+public interface UtilWatcher {
 	void fire(String watchedName);
 }

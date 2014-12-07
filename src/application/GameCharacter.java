@@ -1,25 +1,27 @@
 package application;
 
 
-public class Character {
-	private Vitals vitals;
+public class GameCharacter{
+	private GameVitals vitals;
 	private Equipment weapon;
 	private Equipment armor;
 	private Element element;
 	private String name;
 	private int experience = 0;
+	private GameLoop gl;
 	
-	public Character () {
-		vitals = new Vitals();
-		weapon = new Equipment(vitals.getVital(Stat.Intelect));
-		armor = new Equipment(vitals.getVital(Stat.Intelect));
+	public GameCharacter () {
+		gl = GameLoop.getInstance();
+		vitals = new GameVitals();
+		weapon = new Equipment(vitals.getVital(GameStat.Intelect));
+		armor = new Equipment(vitals.getVital(GameStat.Intelect));
 	}
 
 	public void updateAllVitals (int hp, int mana, int stamina, int intelect, int speed) {
 		vitals.updateAllVitals (hp, mana, stamina, intelect, speed);
 	}
 
-	public int getVital (Stat stat) {
+	public int getVital (GameStat stat) {
 		return vitals.getVital(stat);
 	}
 	
@@ -37,5 +39,5 @@ public class Character {
 
 	public void setElement(Element element) {
 		this.element = element;
-	}	
+	}
 }

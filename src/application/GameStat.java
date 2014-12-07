@@ -1,6 +1,6 @@
 package application;
 
-public enum Stat {
+public enum GameStat {
 	HP,
 	Mana,
 	Stamina,
