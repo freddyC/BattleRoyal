@@ -2,7 +2,7 @@ package application;
 
 import java.util.HashMap;
 
-public class GameVitals {
+public class GameVitals implements GameData{
 	private HashMap<GameStat, Integer> vitals;
 	
 	public GameVitals () {

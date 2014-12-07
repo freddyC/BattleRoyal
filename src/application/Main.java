@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	CtrlStage stage;
 	
+	
 	@Override
 	public void start(Stage startupStage) throws IOException {
 		stage = CtrlStage.getInstance();

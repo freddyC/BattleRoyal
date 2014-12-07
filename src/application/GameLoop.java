@@ -3,44 +3,43 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameLoop {
-	private static GameLoop instance = null;
+public class GameLoop implements Runnable {
+	private Thread t;
 	private List<GameAction> actions;
-	private long lastTime;
-	private boolean paused;
+	private long lastTime, DELAY = 500;
+	private boolean paused, running;
 	
-	
-	public static GameLoop getInstance() {
-		if (instance == null) {
-			instance = new GameLoop();
-		}
-		return instance;
+	private static class InstanceHolder {
+		public static GameLoop instance = new GameLoop();
 	}
 	
-
-	public GameLoop() {
+	public static GameLoop getInstance() {
+		return InstanceHolder.instance;
+	}
+	
+	
+	protected GameLoop() {
 		paused = false;
 		actions = new ArrayList<GameAction> ();
 	}
 	
-	private void startLoop(long now) throws InterruptedException {
-		if (actions.size() == 0 || paused) return;
-		lastTime = lastTime == 0 ? now : lastTime;
-		updateTimeLeft (lastTime - now);
-		startLoop(System.currentTimeMillis());
-	}
-	
-	private void updateTimeLeft (long ellapsedTime) {
+	private void updateTimeLeft (long elapsedTime) {
+		System.out.println("elapsed time = " + elapsedTime);
 		for (GameAction action : actions) {
-			// TODO verify that when action is ready the remove from the Action class doesn't mess up this loop 
-			action.decrament(ellapsedTime);
+			action.decrament(elapsedTime);
+		}
+		for (GameAction action : actions) {
+			action.check();
 		}
 	}
 
 	public void addAction (GameAction a) throws InterruptedException {
 		actions.add(a);
-		if (actions.size() == 1) {
-			startLoop(System.currentTimeMillis());
+		if (!running) {
+			if (t == null) {
+				t = new Thread(this);
+			}
+			t.start();
 		}
 	}
 
@@ -48,6 +47,7 @@ public class GameLoop {
 		actions.remove(a);
 		if (actions.size() <= 0) {
 			lastTime = 0;
+			t = null;
 		}
 	}
 	
@@ -56,9 +56,23 @@ public class GameLoop {
 	}
 	
 	public void resume() throws InterruptedException {
-		long now = System.currentTimeMillis();
 		paused = false;
-		lastTime = now;
-		startLoop(now);
+		t.start();
+	}
+	
+	@Override
+	public void run() {
+		lastTime = System.currentTimeMillis();
+		running = true;
+		while (actions.size() != 0 && !paused) {
+			updateTimeLeft (System.currentTimeMillis() - lastTime);
+			lastTime = System.currentTimeMillis();
+			try {
+				Thread.sleep(DELAY);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		running = false;
 	}
 }

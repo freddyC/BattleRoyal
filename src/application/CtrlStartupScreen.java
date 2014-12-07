@@ -39,8 +39,8 @@ public class CtrlStartupScreen implements UtilWatcher {
 		stage.changeView("ViewGameBoard.fxml");
 	}
 	
-	public void removePlayer(CtrlPlayerListItem playerLI) {
-		ms.removePlayer(playerLI.getPlayer());
+	public void removeFromList(CtrlPlayerListItem playerLI) {
+		ms.removePlayer((GameCharacter) playerLI.getGameData());
 	}
 
 	@Override
@@ -52,8 +52,7 @@ public class CtrlStartupScreen implements UtilWatcher {
 	private void renderList () {
 		List<GameCharacter> players = ms.getPlayers();
 		for (GameCharacter player : players) {
-			CtrlPlayerListItem playerLI = new CtrlPlayerListItem();
-			playerLI.setplayer(player);
+			CtrlPlayerListItem playerLI = new CtrlPlayerListItem(player);
 			playerLI.setStartupController(this);
 			playersList.add(playerLI);
 		}		

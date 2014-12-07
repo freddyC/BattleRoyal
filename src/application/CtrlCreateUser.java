@@ -82,7 +82,7 @@ public class CtrlCreateUser {
 	}
 	
 	@FXML
-	private void savePlayer() throws IOException {
+	private void savePlayer() throws IOException, InterruptedException {
 		if (!allFilledOut()) {
 			warning_label.setVisible(true);
 		} else {
@@ -91,7 +91,7 @@ public class CtrlCreateUser {
 		}
 	}
 	
-	private void createUser() {
+	private void createUser() throws InterruptedException {
 		GameCharacter player = new GameCharacter();
 		player.setElement( (Element) elemental_selecter.getValue());
 		player.updateAllVitals((int) hp_slider.getValue()

@@ -18,12 +18,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="349.0" layoutY="32.0" prefHeight="70.0" prefWidth="237.0" text="History" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="349.0" layoutY="21.0" prefHeight="70.0" prefWidth="501.0" text="History" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Label fx:id="next_up_title" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="415.0" prefHeight="42.0" prefWidth="1123.0" text="next_up_title" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="next_up_title" layoutX="37.0" layoutY="415.0" prefHeight="44.0" prefWidth="808.0" text="Be Epic next_up_title" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
@@ -32,7 +32,7 @@
       <ListView fx:id="turn_queue" layoutX="34.0" layoutY="60.0" prefHeight="420.0" prefWidth="300.0" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="60.0" />
       <ListView fx:id="history_stack" layoutX="44.0" layoutY="70.0" prefHeight="420.0" prefWidth="300.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="475.0" />
       <ListView layoutX="500.0" layoutY="170.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="100.0" />
-      <Button layoutX="601.0" layoutY="40.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="232.0" style="-fx-background-color: #bdbdbd;" text="Pause Game">
+      <Button layoutX="906.0" layoutY="416.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="232.0" text="Pause Game">
          <font>
             <Font size="24.0" />
          </font>

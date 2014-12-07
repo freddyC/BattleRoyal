@@ -1,16 +1,14 @@
 package application;
 
-public class GameActPlayersTurn extends GameAction{
+public class GameActPlayersTurn extends GameAction implements GameData {
 
 	public GameActPlayersTurn(long waitTime) {
 		super(waitTime);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void update() {
-		// TODO Auto-generated method stub
-		
+		//	This is where updating any gui stuff goes based on the time left after each decriment
 	}
 
 	@Override

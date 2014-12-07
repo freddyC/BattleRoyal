@@ -3,7 +3,7 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModelPlayers {
+public class ModelPlayers implements GameData{
 	private static ModelPlayers instance = null;
 	private List<GameCharacter> players;
 	private UtilWatched playersCount;

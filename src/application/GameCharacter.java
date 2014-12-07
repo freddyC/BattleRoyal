@@ -1,7 +1,7 @@
 package application;
 
 
-public class GameCharacter{
+public class GameCharacter implements GameData {
 	private GameVitals vitals;
 	private Equipment weapon;
 	private Equipment armor;
@@ -9,12 +9,15 @@ public class GameCharacter{
 	private String name;
 	private int experience = 0;
 	private GameLoop gl;
+	private GameActPlayersTurn turn;
 	
-	public GameCharacter () {
+	public GameCharacter () throws InterruptedException {
 		gl = GameLoop.getInstance();
 		vitals = new GameVitals();
 		weapon = new Equipment(vitals.getVital(GameStat.Intelect));
 		armor = new Equipment(vitals.getVital(GameStat.Intelect));
+		turn = new GameActPlayersTurn(3000);
+		gl.addAction(turn);
 	}
 
 	public void updateAllVitals (int hp, int mana, int stamina, int intelect, int speed) {

@@ -9,7 +9,7 @@ import javafx.scene.control.ListView;
 public class CtrlGameBoard {
 	@FXML
 	private Label next_up_title;
-	
+
 	@FXML
 	ListView turn_queue, action_queue, history_stack;
 
