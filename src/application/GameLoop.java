@@ -36,9 +36,7 @@ public class GameLoop implements Runnable {
 	public void addAction (Action a) throws InterruptedException {
 		actions.put(a.getActionName(), a);
 		if (!isRunning) {
-			if (loopThread == null) {
-				loopThread = new Thread(this);
-			}
+			loopThread = new Thread(this);
 			loopThread.start();
 		}
 	}
