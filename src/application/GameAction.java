@@ -35,7 +35,7 @@ public abstract class GameAction implements GameData, Runnable {
 		prepTimeLeft -= elapsedTime;
 		System.out.println(name + ", Time Left = " + prepTimeLeft + " Elapsed Time = " + elapsedTime);
 	}
-	public String getName() {
+	public String getActionName() {
 		return name;
 	}
 }

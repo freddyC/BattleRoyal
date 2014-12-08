@@ -1,6 +1,6 @@
 package application;
 
-public class GameActPlayersTurn extends GameAction implements GameData, Runnable {
+public class GameActPlayersTurn extends GameAction {
 
 	public GameActPlayersTurn(String name, long waitTime) {
 		super(name, waitTime);
@@ -13,12 +13,6 @@ public class GameActPlayersTurn extends GameAction implements GameData, Runnable
 
 	@Override
 	protected void performAction() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void run() {
 		// TODO Auto-generated method stub
 		
 	}

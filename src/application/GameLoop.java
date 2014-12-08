@@ -28,15 +28,13 @@ public class GameLoop implements Runnable {
 			 actions.get(i.next()).decrament(elapsedTime);
 		}
 		for (Iterator<String> i = actions.keySet().iterator(); i.hasNext();) {
-			GameAction nextAction = actions.get(i.next());
-			Thread t = new Thread(nextAction);
-	        t.start();
+			new Thread(actions.get(i.next())).start();
 		}
 			
 	}
 
 	public void addAction (GameAction a) throws InterruptedException {
-		actions.put(a.getName(), a);
+		actions.put(a.getActionName(), a);
 		if (!isRunning) {
 			if (loopThread == null) {
 				loopThread = new Thread(this);
