@@ -2,7 +2,7 @@ package application;
 
 public class ActPlayersTurn extends Action {
 	public ActPlayersTurn(String name, long waitTime) {
-		super(name, waitTime);
+		super("turn - " + name, waitTime);
 	}
 
 	@Override
@@ -13,6 +13,5 @@ public class ActPlayersTurn extends Action {
 	@Override
 	protected void performAction() {
 		// TODO Auto-generated method stub
-		
 	}
 }

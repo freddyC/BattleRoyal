@@ -1,10 +1,12 @@
 package application;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class QueueMaster implements Watcher {
-	private Map players; 
+	private static Map<String, Player> players = new HashMap <String, Player> (); 
 	
+	//	Make it a singleton
 	private static class InstanceHolder {
 		public static QueueMaster instance = new QueueMaster();
 	}
@@ -14,10 +16,8 @@ public class QueueMaster implements Watcher {
 	}
 	
 	
-	
 	@Override
 	public void fire(String watchedName) {
 		
 	}
-
 }

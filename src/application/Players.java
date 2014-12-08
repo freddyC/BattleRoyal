@@ -5,13 +5,12 @@ import java.util.List;
 
 public class Players implements GameData{
 	private static Players instance = null;
-	private List<Player> players;
+	private static List<Player> players = new ArrayList <Player> ();
 	private Watched playersCount;
 	
 	protected Players () {
 		// this is to keep it a singleton
-		players = new ArrayList <Player> ();
-		playersCount = new Watched("playersCount");
+		playersCount = new Watched("players count updated");
 	}
 	
 	public static Players getInstance () {
@@ -41,5 +40,14 @@ public class Players implements GameData{
 	public void removePlayer (Player player) {
 		players.remove(player);
 		playersCount.fire();
+	}
+
+	public static boolean invalidName(String n) {
+		for (Player player : players) {
+			if (n.equals(player.getName())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

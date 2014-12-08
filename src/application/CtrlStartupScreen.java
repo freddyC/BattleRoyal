@@ -37,6 +37,12 @@ public class CtrlStartupScreen implements Watcher {
 	@FXML
 	private void startGame() throws IOException  {
 		stage.changeView("ViewGameBoard.fxml");
+		try {
+			GameLoop.resume();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void removeFromList(CtrlPlayerListItem playerLI) {

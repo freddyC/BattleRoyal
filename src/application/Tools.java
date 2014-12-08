@@ -15,4 +15,5 @@ public class Tools {
 		return a[randomInt(0,3)];
 	}
 
+	public static long TURN_LENGTH = 5000;
 }

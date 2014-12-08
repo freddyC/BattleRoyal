@@ -8,20 +8,19 @@ public class Player implements GameData {
 	private ElementEnum element;
 	private String name;
 	private int experience = 0;
-	private GameLoop gl;
 	private ActPlayersTurn turn;
 	private Watched watchedState;  
 	
 	public Player () {
-		gl = GameLoop.getInstance();
 		vitals = new Vitals();
 		weapon = new Equipment(vitals.getVital(StatEnum.Intelect));
 		armor = new Equipment(vitals.getVital(StatEnum.Intelect));
 	}
 	
 	public void queueTurn () throws InterruptedException {
-		turn = new ActPlayersTurn(name + "_turn_timer", 5000 - vitals.getVital(StatEnum.Speed));
-		gl.addAction(turn);
+		turn = new ActPlayersTurn(name + "_turn_timer", Tools.TURN_LENGTH - vitals.getVital(StatEnum.Speed));
+		GameLoop.addAction(turn);
+		GameLoop.pause();
 	}
 
 	public void updateAllVitals (int hp, int mana, int stamina, int intelect, int speed) {
@@ -36,9 +35,19 @@ public class Player implements GameData {
 		return name;
 	}
 
-	public void setName(String name) throws InterruptedException {
-		this.name = name;
-		queueTurn();
+	public void setName(String n) {
+		if (Players.invalidName(n)) {
+			InterruptedException e = new InterruptedException();
+			e.printStackTrace();
+			return;
+		}
+		name = n;
+		try {
+			queueTurn();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public ElementEnum getElement() {

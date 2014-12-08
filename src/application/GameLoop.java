@@ -4,10 +4,11 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class GameLoop implements Runnable {
-	private Thread loopThread;
-	private ConcurrentHashMap<String, Action> actions;
+	private static Thread loopThread;
+	private static ConcurrentHashMap<String, Action> actions = new ConcurrentHashMap<String, Action>();
 	private long lastTime, DELAY = 500;
-	private boolean isPaused, isRunning;
+	private static boolean isPaused = false;
+	private static boolean isRunning = false;
 	
 	private static class InstanceHolder {
 		public static GameLoop instance = new GameLoop();
@@ -18,9 +19,8 @@ public class GameLoop implements Runnable {
 	}
 	
 	
-	protected GameLoop() {
-		isPaused = false;
-		actions = new ConcurrentHashMap<String, Action>();
+	private GameLoop() {
+//	Don't instantiate me
 	}
 	
 	private void updateTimeLeft (long elapsedTime) {
@@ -33,26 +33,25 @@ public class GameLoop implements Runnable {
 			
 	}
 
-	public void addAction (Action a) throws InterruptedException {
+	public static void addAction (Action a) throws InterruptedException {
 		actions.put(a.getActionName(), a);
 		if (!isRunning) {
-			loopThread = new Thread(this);
+			loopThread = new Thread(getInstance());
 			loopThread.start();
 		}
 	}
 
-	public void removeAction (String key) {
-		System.out.println("Hash of size " + actions.size());
+	public static void removeAction (String key) {
 		actions.remove(key);
-		System.out.println("Hash of size " + actions.size());
 	}
 	
-	public void pause () {
+	public static void pause () {
 		isPaused = true;
 	}
 	
-	public void resume() throws InterruptedException {
+	public static void resume() throws InterruptedException {
 		isPaused = false;
+		loopThread = new Thread(getInstance());
 		loopThread.start();
 	}
 	

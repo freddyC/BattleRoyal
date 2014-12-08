@@ -1,8 +1,7 @@
 package application;
 
-public abstract class Action implements GameData, Runnable {
+public abstract class Action extends Watched implements GameData, Runnable {
 	private long prepTimeLeft;
-	private GameLoop gl;
 	String name;
 	
 //	To be overwritten
@@ -10,18 +9,17 @@ public abstract class Action implements GameData, Runnable {
 	protected abstract void performAction();
 	
 	public Action (String nameId, long waitTime) {
+		super("action - " + nameId);
 		name = nameId;
 		prepTimeLeft = waitTime;
-		gl = GameLoop.getInstance();
 		setPrepTime(waitTime);
 	}
 	
 	@Override
 	public void run() {
-		System.out.println("Made it to the run function");
 		if (prepTimeLeft <= 0) {
 			performAction();
-			gl.removeAction(name);
+			GameLoop.removeAction(name);
 		} else {
 			update();
 		}
