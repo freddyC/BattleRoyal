@@ -10,13 +10,17 @@ public class GameCharacter implements GameData {
 	private int experience = 0;
 	private GameLoop gl;
 	private GameActPlayersTurn turn;
+	private UtilWatched watchedState;  
 	
-	public GameCharacter () throws InterruptedException {
+	public GameCharacter () {
 		gl = GameLoop.getInstance();
 		vitals = new GameVitals();
 		weapon = new Equipment(vitals.getVital(GameStat.Intelect));
 		armor = new Equipment(vitals.getVital(GameStat.Intelect));
-		turn = new GameActPlayersTurn(3000);
+	}
+	
+	public void queueTurn () throws InterruptedException {
+		turn = new GameActPlayersTurn(name + "_turn_timer", 3000);
 		gl.addAction(turn);
 	}
 
@@ -32,8 +36,9 @@ public class GameCharacter implements GameData {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name) throws InterruptedException {
 		this.name = name;
+		queueTurn();
 	}
 
 	public Element getElement() {
