@@ -1,6 +1,6 @@
 package application;
 
-public abstract class GameAction implements GameData, Runnable {
+public abstract class Action implements GameData, Runnable {
 	private long prepTimeLeft;
 	private GameLoop gl;
 	String name;
@@ -9,7 +9,7 @@ public abstract class GameAction implements GameData, Runnable {
 	protected abstract void update();
 	protected abstract void performAction();
 	
-	public GameAction (String nameId, long waitTime) {
+	public Action (String nameId, long waitTime) {
 		name = nameId;
 		prepTimeLeft = waitTime;
 		gl = GameLoop.getInstance();

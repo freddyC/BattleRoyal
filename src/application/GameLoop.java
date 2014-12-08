@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class GameLoop implements Runnable {
 	private Thread loopThread;
-	private ConcurrentHashMap<String, GameAction> actions;
+	private ConcurrentHashMap<String, Action> actions;
 	private long lastTime, DELAY = 500;
 	private boolean isPaused, isRunning;
 	
@@ -20,7 +20,7 @@ public class GameLoop implements Runnable {
 	
 	protected GameLoop() {
 		isPaused = false;
-		actions = new ConcurrentHashMap<String, GameAction>();
+		actions = new ConcurrentHashMap<String, Action>();
 	}
 	
 	private void updateTimeLeft (long elapsedTime) {
@@ -33,7 +33,7 @@ public class GameLoop implements Runnable {
 			
 	}
 
-	public void addAction (GameAction a) throws InterruptedException {
+	public void addAction (Action a) throws InterruptedException {
 		actions.put(a.getActionName(), a);
 		if (!isRunning) {
 			if (loopThread == null) {

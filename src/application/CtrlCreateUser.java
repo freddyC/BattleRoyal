@@ -12,13 +12,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import application.Element;
+import application.ElementEnum;
 
 public class CtrlCreateUser {
 	
 	private final int MAX_POINTS = 250;
-	private List <Element> els = new ArrayList <Element> ();
-	private ObservableList<Element> elements = FXCollections.observableList(els);
+	private List <ElementEnum> els = new ArrayList <ElementEnum> ();
+	private ObservableList<ElementEnum> elements = FXCollections.observableList(els);
 	private CtrlStage stage;
 	private int points;
 	
@@ -32,7 +32,7 @@ public class CtrlCreateUser {
 	private ProgressBar attribute_indicator_progress;
 	
 	@FXML
-	private ChoiceBox<Element> elemental_selecter;
+	private ChoiceBox<ElementEnum> elemental_selecter;
 		
 	@FXML
 	TextField name_field;
@@ -47,13 +47,13 @@ public class CtrlCreateUser {
 		setupSlider(speed_slider);
 		updatePoints();
 		
-		els.add(Element.Fire);
-		els.add(Element.Water);
-		els.add(Element.Earth);
-		els.add(Element.Wind);
+		els.add(ElementEnum.Fire);
+		els.add(ElementEnum.Water);
+		els.add(ElementEnum.Earth);
+		els.add(ElementEnum.Wind);
 
 		elemental_selecter.setItems(elements);
-		elemental_selecter.setValue(Element.Fire);
+		elemental_selecter.setValue(ElementEnum.Fire);
 	}
 	
 	private void updatePoints() {
@@ -92,8 +92,8 @@ public class CtrlCreateUser {
 	}
 	
 	private void createUser() throws InterruptedException {
-		GameCharacter player = new GameCharacter();
-		player.setElement( (Element) elemental_selecter.getValue());
+		Player player = new Player();
+		player.setElement( (ElementEnum) elemental_selecter.getValue());
 		player.updateAllVitals((int) hp_slider.getValue()
 							 , (int) mana_slider.getValue()
 							 , (int) stamina_slider.getValue()
@@ -101,7 +101,7 @@ public class CtrlCreateUser {
 							 , (int) speed_slider.getValue() 
 							 );
 		player.setName(name_field.getText());
-		ModelPlayers ms = ModelPlayers.getInstance();
+		Players ms = Players.getInstance();
 		ms.addPlayer(player);
 	}
 

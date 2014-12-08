@@ -10,9 +10,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 
-public class CtrlStartupScreen implements UtilWatcher {
+public class CtrlStartupScreen implements Watcher {
 	private CtrlStage stage;
-	private ModelPlayers ms;
+	private Players ms;
 	private List <CtrlPlayerListItem> playersList;
 	private ObservableList<CtrlPlayerListItem> obsPlayersList;
 	
@@ -23,7 +23,7 @@ public class CtrlStartupScreen implements UtilWatcher {
 	@FXML
 	private void initialize () throws IOException {
 		stage = CtrlStage.getInstance();
-		ms = ModelPlayers.getInstance();
+		ms = Players.getInstance();
 		ms.subscribeToPlayersList(this);
 		resetLists();
 		renderList();
@@ -40,7 +40,7 @@ public class CtrlStartupScreen implements UtilWatcher {
 	}
 	
 	public void removeFromList(CtrlPlayerListItem playerLI) {
-		ms.removePlayer((GameCharacter) playerLI.getGameData());
+		ms.removePlayer((Player) playerLI.getGameData());
 	}
 
 	@Override
@@ -50,8 +50,8 @@ public class CtrlStartupScreen implements UtilWatcher {
 	}
 
 	private void renderList () {
-		List<GameCharacter> players = ms.getPlayers();
-		for (GameCharacter player : players) {
+		List<Player> players = ms.getPlayers();
+		for (Player player : players) {
 			CtrlPlayerListItem playerLI = new CtrlPlayerListItem(player);
 			playerLI.setStartupController(this);
 			playersList.add(playerLI);

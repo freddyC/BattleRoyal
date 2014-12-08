@@ -2,18 +2,18 @@ package application;
 
 
 public class Equipment {
-	Element element;
+	ElementEnum element;
 	int strength;
 	int forgings;
 
 	public Equipment(int intelect) {
 		super();
-		element = UtilTools.getRandomElement();
+		element = Tools.getRandomElement();
 		forgings = 0;
 		forge(intelect);
 	}
 	
-	public Element getElement() {
+	public ElementEnum getElement() {
 		return element;
 	}
 	
@@ -23,11 +23,11 @@ public class Equipment {
 	
 	public void forge (int intelect) {
 		forgings++;
-		strength += UtilTools.randomInt(1 + intelect, 5 + intelect);
+		strength += Tools.randomInt(1 + intelect, 5 + intelect);
 	}
 	
 	public Equipment reForge (int intelect) {
-		return generateEquipment(forgings - UtilTools.randomInt(0, 3), intelect);
+		return generateEquipment(forgings - Tools.randomInt(0, 3), intelect);
 	}
 	
 	
@@ -39,7 +39,7 @@ public class Equipment {
 		Equipment eq = new Equipment(intelect);
 		
 		for (int i = 0; i < level; ++i) {
-			eq.strength += UtilTools.randomInt(2, 6);
+			eq.strength += Tools.randomInt(2, 6);
 		}
 		
 		return eq;

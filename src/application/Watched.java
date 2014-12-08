@@ -3,26 +3,26 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtilWatched {
-	private List<UtilWatcher> watchers;
+public class Watched {
+	private List<Watcher> watchers;
 	private String name;
 	
-	UtilWatched (String n) {
-		watchers = new ArrayList<UtilWatcher> ();
+	Watched (String n) {
+		watchers = new ArrayList<Watcher> ();
 		name = n;
 	}
 
-	void subscribe (UtilWatcher w) {
+	void subscribe (Watcher w) {
 		watchers.add(w);
 	}
 	
-	void unsubscribe (UtilWatcher w) {
+	void unsubscribe (Watcher w) {
 		watchers.remove(w);
 	}
 	
 	void fire () {
 		System.out.println("[FIRE] " + name);
-		for (UtilWatcher w : watchers) {
+		for (Watcher w : watchers) {
 			w.fire(name);
 		}
 	}

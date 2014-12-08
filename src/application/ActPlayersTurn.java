@@ -1,8 +1,7 @@
 package application;
 
-public class GameActPlayersTurn extends GameAction {
-
-	public GameActPlayersTurn(String name, long waitTime) {
+public class ActPlayersTurn extends Action {
+	public ActPlayersTurn(String name, long waitTime) {
 		super(name, waitTime);
 	}
 

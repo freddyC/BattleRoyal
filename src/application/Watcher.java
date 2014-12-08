@@ -1,5 +1,5 @@
 package application;
 
-public interface UtilWatcher {
+public interface Watcher {
 	void fire(String watchedName);
 }

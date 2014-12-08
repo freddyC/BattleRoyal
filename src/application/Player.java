@@ -1,26 +1,26 @@
 package application;
 
 
-public class GameCharacter implements GameData {
-	private GameVitals vitals;
+public class Player implements GameData {
+	private Vitals vitals;
 	private Equipment weapon;
 	private Equipment armor;
-	private Element element;
+	private ElementEnum element;
 	private String name;
 	private int experience = 0;
 	private GameLoop gl;
-	private GameActPlayersTurn turn;
-	private UtilWatched watchedState;  
+	private ActPlayersTurn turn;
+	private Watched watchedState;  
 	
-	public GameCharacter () {
+	public Player () {
 		gl = GameLoop.getInstance();
-		vitals = new GameVitals();
-		weapon = new Equipment(vitals.getVital(GameStat.Intelect));
-		armor = new Equipment(vitals.getVital(GameStat.Intelect));
+		vitals = new Vitals();
+		weapon = new Equipment(vitals.getVital(StatEnum.Intelect));
+		armor = new Equipment(vitals.getVital(StatEnum.Intelect));
 	}
 	
 	public void queueTurn () throws InterruptedException {
-		turn = new GameActPlayersTurn(name + "_turn_timer", 3000);
+		turn = new ActPlayersTurn(name + "_turn_timer", 5000 - vitals.getVital(StatEnum.Speed));
 		gl.addAction(turn);
 	}
 
@@ -28,7 +28,7 @@ public class GameCharacter implements GameData {
 		vitals.updateAllVitals (hp, mana, stamina, intelect, speed);
 	}
 
-	public int getVital (GameStat stat) {
+	public int getVital (StatEnum stat) {
 		return vitals.getVital(stat);
 	}
 	
@@ -41,11 +41,11 @@ public class GameCharacter implements GameData {
 		queueTurn();
 	}
 
-	public Element getElement() {
+	public ElementEnum getElement() {
 		return element;
 	}
 
-	public void setElement(Element element) {
+	public void setElement(ElementEnum element) {
 		this.element = element;
 	}
 }

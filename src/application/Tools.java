@@ -2,7 +2,7 @@ package application;
 
 import java.util.Random;
 
-public class UtilTools {
+public class Tools {
 
 	public static int randomInt(int min, int max) {
 		Random rand = new Random();
@@ -10,8 +10,8 @@ public class UtilTools {
 	    return randomNum;
 	}
 	
-	public static Element getRandomElement () {
-		Element [] a = {Element.Fire, Element.Water, Element.Wind, Element.Earth};
+	public static ElementEnum getRandomElement () {
+		ElementEnum [] a = {ElementEnum.Fire, ElementEnum.Water, ElementEnum.Wind, ElementEnum.Earth};
 		return a[randomInt(0,3)];
 	}
 
