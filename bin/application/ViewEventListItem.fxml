@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml">
+	<AnchorPane prefHeight="50.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+	   <children>
+	      <Label fx:id="attack_against" layoutX="14.0" layoutY="17.0" text="attack_against" />
+	      <ProgressBar layoutX="125.0" layoutY="15.0" prefHeight="20.0" prefWidth="112.0" progress="0.0" />
+	      <Label layoutX="150.0" layoutY="17.0" text="Arival time" />
+	   </children>
+	</AnchorPane>
+</fx:root>

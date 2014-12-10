@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 
 public class CtrlGameBoard {
 	CtrlTurnList turnsCtrl;
+	CtrlEventsList eventsCtrl;
 	
 	@FXML
 	private Label next_up_title;
@@ -15,11 +16,13 @@ public class CtrlGameBoard {
 	@FXML
 	private ListView<CtrlTurnListItem> turn_queue;
 	
-
+	@FXML
+	private ListView<CtrlEventListItem> events_queue;
+	
 	
 	@FXML
 	private void initialize () throws IOException {
-		System.out.println("INIT FOR CTRL GAME BOARD");
 		turnsCtrl = new CtrlTurnList (turn_queue);
+		eventsCtrl = new CtrlEventsList(events_queue);
 	}
 }
