@@ -19,11 +19,20 @@ public class Watched {
 	void unsubscribe (Watcher w) {
 		watchers.remove(w);
 	}
-	
+
 	void fire () {
 		System.out.println("[FIRE] " + name);
 		for (Watcher w : watchers) {
 			w.fire(name);
 		}
+	}
+
+	
+	Runnable fireAsync () {
+//		System.out.println("[FIRE ASYNC] " + name);
+		for (Watcher w : watchers) {
+			w.fire(name);
+		}
+		return null;
 	}
 }

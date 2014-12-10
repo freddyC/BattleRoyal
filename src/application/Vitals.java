@@ -3,34 +3,36 @@ package application;
 import java.util.HashMap;
 
 public class Vitals implements GameData{
-	private HashMap<StatEnum, Integer> vitals;
+	private HashMap<EStat, Integer> vitals;
 	
 	public Vitals () {
-		vitals = new HashMap<StatEnum, Integer> ();
-		vitals.put(StatEnum.HP, 250);
-		vitals.put(StatEnum.Mana, 100);
-		vitals.put(StatEnum.Stamina, 100);
-		vitals.put(StatEnum.Intelect, 75);
-		vitals.put(StatEnum.Speed, 75);
+		vitals = new HashMap<EStat, Integer> ();
+		vitals.put(EStat.HP, 250);
+		vitals.put(EStat.Mana, 100);
+		vitals.put(EStat.MissingHP, 0);
+		vitals.put(EStat.MissingMana, 0);
+		vitals.put(EStat.Stamina, 100);
+		vitals.put(EStat.Intelect, 75);
+		vitals.put(EStat.Speed, 75);
 	}
 	
-	public int getVital (StatEnum vital) {
+	public int getVital (EStat vital) {
 		return vitals.get(vital);
 	}
 	
-	public void increaseVital (StatEnum vital, int increase) {
+	public void increaseVital (EStat vital, int increase) {
 		vitals.put(vital, vitals.get(vital) + increase);
 	}
 	
-	public void decreaseVital (StatEnum vital, int increase) {
+	public void decreaseVital (EStat vital, int increase) {
 		vitals.put(vital, vitals.get(vital) - increase);
 	}
 
 	public void updateAllVitals(int hp, int mana, int stamina, int intelect, int speed) {
-		increaseVital(StatEnum.HP, hp);
-		increaseVital(StatEnum.Mana, mana);
-		increaseVital(StatEnum.Stamina, stamina);
-		increaseVital(StatEnum.Intelect, intelect);
-		increaseVital(StatEnum.Speed, speed);
+		increaseVital(EStat.HP, hp);
+		increaseVital(EStat.Mana, mana);
+		increaseVital(EStat.Stamina, stamina);
+		increaseVital(EStat.Intelect, intelect);
+		increaseVital(EStat.Speed, speed);
 	}
 }

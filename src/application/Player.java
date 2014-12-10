@@ -5,29 +5,27 @@ public class Player implements GameData {
 	private Vitals vitals;
 	private Equipment weapon;
 	private Equipment armor;
-	private ElementEnum element;
+	private EElement element;
 	private String name;
 	private int experience = 0;
-	private ActPlayersTurn turn;
-	private Watched watchedState;  
+	private ActionTurn turn;
 	
 	public Player () {
 		vitals = new Vitals();
-		weapon = new Equipment(vitals.getVital(StatEnum.Intelect));
-		armor = new Equipment(vitals.getVital(StatEnum.Intelect));
+		weapon = new Equipment(vitals.getVital(EStat.Intelect));
+		armor = new Equipment(vitals.getVital(EStat.Intelect));
 	}
 	
-	public void queueTurn () throws InterruptedException {
-		turn = new ActPlayersTurn(name + "_turn_timer", Tools.TURN_LENGTH - vitals.getVital(StatEnum.Speed));
+	public void queueTurn (long waitTime) {
+		turn = new ActionTurn(name, waitTime, this);
 		GameLoop.addAction(turn);
-		GameLoop.pause();
 	}
 
 	public void updateAllVitals (int hp, int mana, int stamina, int intelect, int speed) {
 		vitals.updateAllVitals (hp, mana, stamina, intelect, speed);
 	}
 
-	public int getVital (StatEnum stat) {
+	public int getVital (EStat stat) {
 		return vitals.getVital(stat);
 	}
 	
@@ -42,19 +40,24 @@ public class Player implements GameData {
 			return;
 		}
 		name = n;
-		try {
-			queueTurn();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		queueTurn(Tools.TURN_LENGTH - getVital(EStat.Speed));
+		GameLoop.pause();
+		
 	}
 
-	public ElementEnum getElement() {
+	public EElement getElement() {
 		return element;
 	}
 
-	public void setElement(ElementEnum element) {
+	public void setElement(EElement element) {
 		this.element = element;
+	}
+
+	public boolean hasTurn() {
+		return (turn != null);
+	}
+
+	public ActionTurn getTurn() {
+		return turn;
 	}
 }

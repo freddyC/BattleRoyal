@@ -1,6 +1,6 @@
 package application;
 
-public enum StatEnum {
+public enum EStat {
 	HP,
 	Mana,
 	MissingHP,

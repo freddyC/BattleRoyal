@@ -2,7 +2,7 @@ package application;
 
 
 public class Equipment {
-	ElementEnum element;
+	EElement element;
 	int strength;
 	int forgings;
 
@@ -13,7 +13,7 @@ public class Equipment {
 		forge(intelect);
 	}
 	
-	public ElementEnum getElement() {
+	public EElement getElement() {
 		return element;
 	}
 	

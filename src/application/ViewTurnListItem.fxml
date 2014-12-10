@@ -6,26 +6,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: gray; -fx-border-radius: 10; -fx-background-radius: 11;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
-   <children>
-      <ProgressBar fx:id="time_bar" layoutX="40.0" layoutY="21.0" prefWidth="200.0" progress="0.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
-      <Label fx:id="name" layoutX="5.0" layoutY="5.0" prefHeight="23.0" prefWidth="225.0" text="NAME">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="element" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="227.0" layoutY="6.0" prefHeight="16.0" prefWidth="69.0" text="Element" textAlignment="RIGHT" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-      <ProgressBar fx:id="hp_bar" layoutX="2.0" layoutY="43.0" prefHeight="20.0" prefWidth="137.0" progress="0.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="40.0" />
-      <Label fx:id="charafter_name1" layoutX="7.0" layoutY="27.0" prefHeight="12.0" prefWidth="22.0" text="HP">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label fx:id="charafter_name11" layoutX="178.0" layoutY="28.0" prefHeight="12.0" prefWidth="97.0" text="Time Till Next Turn">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml">
+	<AnchorPane prefHeight="0.0" prefWidth="269.0" style="-fx-border-color: gray; -fx-border-radius: 10; -fx-background-radius: 11;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	   <children>
+	      <ProgressBar fx:id="time_bar" layoutX="157.0" layoutY="13.0" prefHeight="25.0" prefWidth="115.0" progress="0.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="157.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="13.0" />
+	      <Label fx:id="name" layoutX="5.0" layoutY="5.0" prefHeight="23.0" prefWidth="143.0" text="NAME">
+	         <font>
+	            <Font size="18.0" />
+	         </font>
+	      </Label>
+	      <Label fx:id="element" layoutX="5.0" layoutY="32.0" prefHeight="16.0" prefWidth="69.0" text="Element" AnchorPane.rightAnchor="198.0" AnchorPane.topAnchor="32.0" />
+	      <ProgressBar fx:id="hp_bar" layoutX="109.0" layoutY="38.0" prefHeight="25.0" prefWidth="150.0" progress="0.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="37.0" />
+	      <Label fx:id="charafter_name1" layoutX="173.0" layoutY="43.0" prefHeight="12.0" prefWidth="22.0" text="HP">
+	         <font>
+	            <Font size="10.0" />
+	         </font>
+	      </Label>
+	      <Label fx:id="charafter_name11" layoutX="205.0" layoutY="18.0" prefHeight="12.0" prefWidth="49.0" text="Time">
+	         <font>
+	            <Font size="10.0" />
+	         </font>
+	      </Label>
+	   </children>
+	</AnchorPane>
+</fx:root>

@@ -1,6 +1,6 @@
 package application;
 
-public enum ElementEnum {
+public enum EElement {
 	Fire,
 	Water,
 	Earth,

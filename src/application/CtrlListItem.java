@@ -12,7 +12,6 @@ public abstract class CtrlListItem extends AnchorPane {
 	public CtrlListItem (GameData d, String view) {
 		loadView(view);
 		data = d;
-		hydrate();
 	}
 	
 	private void loadView (String view) {

@@ -12,7 +12,7 @@ import javafx.scene.control.ListView;
 
 public class CtrlStartupScreen implements Watcher {
 	private CtrlStage stage;
-	private Players ms;
+	private Players playersContainer;
 	private List <CtrlPlayerListItem> playersList;
 	private ObservableList<CtrlPlayerListItem> obsPlayersList;
 	
@@ -23,8 +23,8 @@ public class CtrlStartupScreen implements Watcher {
 	@FXML
 	private void initialize () throws IOException {
 		stage = CtrlStage.getInstance();
-		ms = Players.getInstance();
-		ms.subscribeToPlayersList(this);
+		playersContainer = Players.getInstance();
+		playersContainer.subscribeToPlayersList(this);
 		resetLists();
 		renderList();
 	}
@@ -37,16 +37,11 @@ public class CtrlStartupScreen implements Watcher {
 	@FXML
 	private void startGame() throws IOException  {
 		stage.changeView("ViewGameBoard.fxml");
-		try {
-			GameLoop.resume();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		GameLoop.resume();
 	}
 	
 	public void removeFromList(CtrlPlayerListItem playerLI) {
-		ms.removePlayer((Player) playerLI.getGameData());
+		playersContainer.removePlayer((Player) playerLI.getGameData());
 	}
 
 	@Override
@@ -56,7 +51,7 @@ public class CtrlStartupScreen implements Watcher {
 	}
 
 	private void renderList () {
-		List<Player> players = ms.getPlayers();
+		List<Player> players = playersContainer.getPlayers();
 		for (Player player : players) {
 			CtrlPlayerListItem playerLI = new CtrlPlayerListItem(player);
 			playerLI.setStartupController(this);

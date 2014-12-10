@@ -3,12 +3,12 @@ package application;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class GameLoop implements Runnable {
-	private static Thread loopThread;
+public class GameLoop {
 	private static ConcurrentHashMap<String, Action> actions = new ConcurrentHashMap<String, Action>();
-	private long lastTime, DELAY = 500;
-	private static boolean isPaused = false;
-	private static boolean isRunning = false;
+	private static boolean wasStarted = false;
+	private static boolean isNotPaused = true;
+	private static Thread glThread;
+	private static Watched ticker;
 	
 	private static class InstanceHolder {
 		public static GameLoop instance = new GameLoop();
@@ -18,57 +18,53 @@ public class GameLoop implements Runnable {
 		return InstanceHolder.instance;
 	}
 	
-	
-	private GameLoop() {
-//	Don't instantiate me
+	public static void subscribe (Watcher w) {
+		getInstance().ticker.subscribe(w);
 	}
 	
-	private void updateTimeLeft (long elapsedTime) {
+	public static void unsubscribe (Watcher w) {
+		getInstance().ticker.unsubscribe(w);
+	}
+	
+	private GameLoop() {
+		ticker = new Watched ("time-ticker");
+	}
+	
+	public void updateTimeLeft (long elapsedTime) {
+		new Thread(ticker.fireAsync()).start();
 		for (Iterator<String> i = actions.keySet().iterator(); i.hasNext();) {
-			 actions.get(i.next()).decrament(elapsedTime);
+			actions.get(i.next()).decrament(elapsedTime);
 		}
+
 		for (Iterator<String> i = actions.keySet().iterator(); i.hasNext();) {
 			new Thread(actions.get(i.next())).start();
 		}
 			
 	}
 
-	public static void addAction (Action a) throws InterruptedException {
+	public static void addAction (Action a) {
 		actions.put(a.getActionName(), a);
-		if (!isRunning) {
-			loopThread = new Thread(getInstance());
-			loopThread.start();
+		if (!wasStarted) {
+			glThread = new Thread(new Loop(getInstance()));
+			glThread.start();
+			wasStarted = true;
 		}
 	}
 
-	public static void removeAction (String key) {
+	public synchronized static void removeAction (String key) {
 		actions.remove(key);
 	}
 	
 	public static void pause () {
-		isPaused = true;
+		isNotPaused = false;
 	}
 	
-	public static void resume() throws InterruptedException {
-		isPaused = false;
-		loopThread = new Thread(getInstance());
-		loopThread.start();
+	public static void resume() {
+		isNotPaused = true;
 	}
 	
-	@Override
-	public void run() {
-		lastTime = System.currentTimeMillis();
-		isRunning = true;
-		while (actions.size() > 0 && !isPaused) {
-			
-			updateTimeLeft (System.currentTimeMillis() - lastTime);
-			lastTime = System.currentTimeMillis();
-			try {
-				Thread.sleep(DELAY);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		isRunning = false;
+
+	public boolean isNotPaused() {
+		return isNotPaused;
 	}
 }

@@ -9,6 +9,7 @@ public class CtrlPlayerListItem extends CtrlListItem {
 	
 	public CtrlPlayerListItem(Player player) {
 		super(player,"ViewPlayerListItem.fxml");
+		hydrate();
 	}
 	
 	@FXML
@@ -17,11 +18,11 @@ public class CtrlPlayerListItem extends CtrlListItem {
 	public void hydrate () {
 		name.setText("" + 				((Player) data).getName());
 		element.setText("Element: " + 	((Player) data).getElement());
-		hp.setText("HP: " + 			((Player) data).getVital(StatEnum.HP));
-		mana.setText("Mana: " + 		((Player) data).getVital(StatEnum.Mana));
-		stamina.setText("Stamina: " + 	((Player) data).getVital(StatEnum.Stamina));
-		intelect.setText("Intelect: " + ((Player) data).getVital(StatEnum.Intelect));
-		speed.setText("Speed: " + 		((Player) data).getVital(StatEnum.Speed));
+		hp.setText("HP: " + 			((Player) data).getVital(EStat.HP));
+		mana.setText("Mana: " + 		((Player) data).getVital(EStat.Mana));
+		stamina.setText("Stamina: " + 	((Player) data).getVital(EStat.Stamina));
+		intelect.setText("Intelect: " + ((Player) data).getVital(EStat.Intelect));
+		speed.setText("Speed: " + 		((Player) data).getVital(EStat.Speed));
 	}
 
 	public void setStartupController(CtrlStartupScreen controller) {
