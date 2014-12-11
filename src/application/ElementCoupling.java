@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class ElementCoupling {
 	private static ElementCoupling instance = null;
-	private HashMap<EElement, HashMap<EElement, Integer>> couplingStat;
-	private HashMap<EElement, HashMap<EElement, String>>  couplingText;
+	private HashMap<EnumElement, HashMap<EnumElement, Integer>> couplingStat;
+	private HashMap<EnumElement, HashMap<EnumElement, String>>  couplingText;
 	
 	public static ElementCoupling getInstance() {
 		if(instance == null) {
@@ -16,76 +16,82 @@ public class ElementCoupling {
 
 	
 	protected ElementCoupling() {
-		couplingStat = new HashMap<EElement, HashMap<EElement, Integer>>();
-		HashMap<EElement, Integer> fireEffect = new HashMap <EElement,Integer>();
-		fireEffect.put(EElement.Fire, 0);
-		fireEffect.put(EElement.Water, -1);
-		fireEffect.put(EElement.Earth, 0);
-		fireEffect.put(EElement.Wind, 1);
+		couplingStat = new HashMap<EnumElement, HashMap<EnumElement, Integer>>();
+		HashMap<EnumElement, Integer> fireEffect = new HashMap <EnumElement,Integer>();
+		fireEffect.put(EnumElement.Fire, 0);
+		fireEffect.put(EnumElement.Water, -1);
+		fireEffect.put(EnumElement.Earth, 0);
+		fireEffect.put(EnumElement.Wind, 1);
 		
-		HashMap<EElement, Integer> waterEffect = new HashMap <EElement,Integer>();
-		waterEffect.put(EElement.Fire, 1);
-		waterEffect.put(EElement.Water, 0);
-		waterEffect.put(EElement.Earth, -1);
-		waterEffect.put(EElement.Wind, 0);
+		HashMap<EnumElement, Integer> waterEffect = new HashMap <EnumElement,Integer>();
+		waterEffect.put(EnumElement.Fire, 1);
+		waterEffect.put(EnumElement.Water, 0);
+		waterEffect.put(EnumElement.Earth, -1);
+		waterEffect.put(EnumElement.Wind, 0);
 		
-		HashMap<EElement, Integer> earthEffect = new HashMap <EElement,Integer>();
-		earthEffect.put(EElement.Fire, 0);
-		earthEffect.put(EElement.Water, 1);
-		earthEffect.put(EElement.Earth, 0);
-		earthEffect.put(EElement.Wind, -1);
+		HashMap<EnumElement, Integer> earthEffect = new HashMap <EnumElement,Integer>();
+		earthEffect.put(EnumElement.Fire, 0);
+		earthEffect.put(EnumElement.Water, 1);
+		earthEffect.put(EnumElement.Earth, 0);
+		earthEffect.put(EnumElement.Wind, -1);
 		
-		HashMap<EElement, Integer> windEffect = new HashMap <EElement,Integer>();
-		windEffect.put(EElement.Fire, -1);
-		windEffect.put(EElement.Water, 0);
-		windEffect.put(EElement.Earth, 1);
-		windEffect.put(EElement.Wind, 0);
+		HashMap<EnumElement, Integer> windEffect = new HashMap <EnumElement,Integer>();
+		windEffect.put(EnumElement.Fire, -1);
+		windEffect.put(EnumElement.Water, 0);
+		windEffect.put(EnumElement.Earth, 1);
+		windEffect.put(EnumElement.Wind, 0);
 		
-		couplingStat.put(EElement.Fire, fireEffect);
-		couplingStat.put(EElement.Wind, windEffect);
-		couplingStat.put(EElement.Water, waterEffect);
-		couplingStat.put(EElement.Earth, earthEffect);
+		couplingStat.put(EnumElement.Fire, fireEffect);
+		couplingStat.put(EnumElement.Wind, windEffect);
+		couplingStat.put(EnumElement.Water, waterEffect);
+		couplingStat.put(EnumElement.Earth, earthEffect);
 		
-		couplingText = new HashMap<EElement, HashMap<EElement, String>>();
-		HashMap<EElement, String> fireDesc = new HashMap <EElement,String>();
-		fireDesc.put(EElement.Water, "doused");
-		fireDesc.put(EElement.Wind, "kindled");
-		fireDesc.put(EElement.Earth, "unaffected");
-		fireDesc.put(EElement.Fire, "unaffected");
+		couplingText = new HashMap<EnumElement, HashMap<EnumElement, String>>();
+		HashMap<EnumElement, String> fireDesc = new HashMap <EnumElement,String>();
+		fireDesc.put(EnumElement.Water, "doused");
+		fireDesc.put(EnumElement.Wind, "kindled");
+		fireDesc.put(EnumElement.Earth, "unaffected");
+		fireDesc.put(EnumElement.Fire, "unaffected");
 
-		HashMap<EElement, String> waterDesc = new HashMap <EElement,String>();
-		waterDesc.put(EElement.Water, "unaffected");
-		waterDesc.put(EElement.Wind, "unaffected");
-		waterDesc.put(EElement.Earth, "muddied");
-		waterDesc.put(EElement.Fire, "boiled");
+		HashMap<EnumElement, String> waterDesc = new HashMap <EnumElement,String>();
+		waterDesc.put(EnumElement.Water, "unaffected");
+		waterDesc.put(EnumElement.Wind, "unaffected");
+		waterDesc.put(EnumElement.Earth, "muddied");
+		waterDesc.put(EnumElement.Fire, "boiled");
 
-		HashMap<EElement, String> earthDesc = new HashMap <EElement,String>();
-		earthDesc.put(EElement.Water, "quickened");
-		earthDesc.put(EElement.Wind, "eroded");
-		earthDesc.put(EElement.Earth, "unaffected");
-		earthDesc.put(EElement.Fire, "unaffected");
+		HashMap<EnumElement, String> earthDesc = new HashMap <EnumElement,String>();
+		earthDesc.put(EnumElement.Water, "quickened");
+		earthDesc.put(EnumElement.Wind, "eroded");
+		earthDesc.put(EnumElement.Earth, "unaffected");
+		earthDesc.put(EnumElement.Fire, "unaffected");
 
-		HashMap<EElement, String> windDesc = new HashMap <EElement,String>();
-		windDesc.put(EElement.Water, "unaffected");
-		windDesc.put(EElement.Wind, "unaffected");
-		windDesc.put(EElement.Earth, "given projectiles");
-		windDesc.put(EElement.Fire, "miss directed");
+		HashMap<EnumElement, String> windDesc = new HashMap <EnumElement,String>();
+		windDesc.put(EnumElement.Water, "unaffected");
+		windDesc.put(EnumElement.Wind, "unaffected");
+		windDesc.put(EnumElement.Earth, "given projectiles");
+		windDesc.put(EnumElement.Fire, "miss directed");
 
-		couplingText.put(EElement.Fire, fireDesc);
-		couplingText.put(EElement.Wind, windDesc);
-		couplingText.put(EElement.Water, waterDesc);
-		couplingText.put(EElement.Earth, earthDesc);
+		couplingText.put(EnumElement.Fire, fireDesc);
+		couplingText.put(EnumElement.Wind, windDesc);
+		couplingText.put(EnumElement.Water, waterDesc);
+		couplingText.put(EnumElement.Earth, earthDesc);
 	
 	}
 	
 
 
-	public int getElementalCoupling (EElement actioner, EElement actionee) {
+	public int getElementalCoupling (EnumElement actioner, EnumElement actionee) {
 		return (couplingStat.get(actioner)).get(actionee);
 	}
 
 
-	public String getCouplingText (EElement actioner, EElement actionee) {
+	public String getCouplingText (EnumElement actioner, EnumElement actionee) {
 		return (couplingText.get(actioner)).get(actionee);
+	}
+
+
+	public int getAttackRes(EnumElement element, Object swordAffinity) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

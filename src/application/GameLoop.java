@@ -45,7 +45,7 @@ public class GameLoop {
 	public static void addAction (Action a) {
 		actions.put(a.getActionName(), a);
 		if (!wasStarted) {
-			glThread = new Thread(new Loop(getInstance()));
+			glThread = new Thread(new UtilLoop(getInstance()));
 			glThread.start();
 			wasStarted = true;
 		}

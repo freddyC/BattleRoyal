@@ -31,13 +31,17 @@ public class CtrlTurnListItem extends CtrlListItem implements Watcher{
 
 	private void updateHpProgress () {
 		hp_bar.setProgress(
-				(player.getVital(EStat.HP) - player.getVital(EStat.MissingHP)) / 
-				player.getVital(EStat.HP)
+				(player.getVital(EnumStat.HP) - player.getVital(EnumStat.MissingHP)) / 
+				player.getVital(EnumStat.HP)
 			);
 	}
 	
 	private void updateTimeProgress () {
-		double prog = 1 - (turn.getPrepTimeLeft() / turn.getTotalTime());
+		turn = player.getTurn();
+		double left = turn.getPrepTimeLeft();
+		double total = turn.getTotalTime();
+		
+		double prog = (1 - (left / total));
 		if (prog < 0) {
 			prog = 0;
 		}
@@ -49,7 +53,6 @@ public class CtrlTurnListItem extends CtrlListItem implements Watcher{
 
 	@Override
 	public void fire(String watchedName) {
-		updateTimeProgress();
-		updateHpProgress();
+		hydrate();
 	}
 }

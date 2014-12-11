@@ -12,13 +12,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import application.EElement;
+import application.EnumElement;
 
-public class CtrlCreateUser {
+public class StageCreatePlayer {
 	
 	private final int MAX_POINTS = 250;
-	private List <EElement> els = new ArrayList <EElement> ();
-	private ObservableList<EElement> elements = FXCollections.observableList(els);
+	private List <EnumElement> els = new ArrayList <EnumElement> ();
+	private ObservableList<EnumElement> elements = FXCollections.observableList(els);
 	private CtrlStage stage;
 	private int points;
 	
@@ -32,7 +32,7 @@ public class CtrlCreateUser {
 	private ProgressBar attribute_indicator_progress;
 	
 	@FXML
-	private ChoiceBox<EElement> elemental_selecter;
+	private ChoiceBox<EnumElement> elemental_selecter;
 		
 	@FXML
 	TextField name_field;
@@ -47,13 +47,13 @@ public class CtrlCreateUser {
 		setupSlider(speed_slider);
 		updatePoints();
 		
-		els.add(EElement.Fire);
-		els.add(EElement.Water);
-		els.add(EElement.Earth);
-		els.add(EElement.Wind);
+		els.add(EnumElement.Fire);
+		els.add(EnumElement.Water);
+		els.add(EnumElement.Earth);
+		els.add(EnumElement.Wind);
 
 		elemental_selecter.setItems(elements);
-		elemental_selecter.setValue(EElement.Fire);
+		elemental_selecter.setValue(EnumElement.Fire);
 	}
 	
 	private void updatePoints() {
@@ -93,7 +93,7 @@ public class CtrlCreateUser {
 	
 	private void createUser() throws InterruptedException {
 		Player player = new Player();
-		player.setElement( (EElement) elemental_selecter.getValue());
+		player.setElement( (EnumElement) elemental_selecter.getValue());
 		player.updateAllVitals((int) hp_slider.getValue()
 							 , (int) mana_slider.getValue()
 							 , (int) stamina_slider.getValue()

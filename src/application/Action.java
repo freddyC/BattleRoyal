@@ -18,6 +18,7 @@ public abstract class Action extends Watched implements GameData, Runnable {
 	@Override
 	public void run() {
 		if (prepTimeLeft <= 0) {
+			System.out.println("perform action --> " + name);
 			GameLoop.removeAction(name);
 			performAction();
 		} else {

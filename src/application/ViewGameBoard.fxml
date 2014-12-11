@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CtrlGameBoard">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StageGameBoard">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="16.0" prefHeight="30.0" prefWidth="269.0" text="Who's Turn Next" textAlignment="CENTER" textFill="WHITE">
          <font>

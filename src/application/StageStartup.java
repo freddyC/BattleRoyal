@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 
-public class CtrlStartupScreen implements Watcher {
+public class StageStartup implements Watcher {
 	private CtrlStage stage;
 	private Players playersContainer;
 	private List <CtrlPlayerListItem> playersList;
@@ -37,7 +37,6 @@ public class CtrlStartupScreen implements Watcher {
 	@FXML
 	private void startGame() throws IOException  {
 		stage.changeView("ViewGameBoard.fxml");
-		GameLoop.resume();
 	}
 	
 	public void removeFromList(CtrlPlayerListItem playerLI) {

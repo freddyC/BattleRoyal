@@ -1,10 +1,10 @@
 package application;
 
-public class Loop implements Runnable{
+public class UtilLoop implements Runnable{
 	private GameLoop gl;
-	private final long DELAY = 150;
+	private final long DELAY = 50;
 	
-	public Loop (GameLoop g) {
+	public UtilLoop (GameLoop g) {
 		gl = g;
 	}
 	

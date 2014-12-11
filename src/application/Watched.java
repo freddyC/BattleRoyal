@@ -21,7 +21,7 @@ public class Watched {
 	}
 
 	void fire () {
-		System.out.println("[FIRE] " + name);
+//		System.out.println("[FIRE] " + name);
 		for (Watcher w : watchers) {
 			w.fire(name);
 		}

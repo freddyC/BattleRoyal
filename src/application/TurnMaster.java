@@ -37,7 +37,7 @@ public class TurnMaster {
 		turns.remove(0);
 		Player player = turn.getPlayer();
 		long choiceLength = getPlayersChoice(player);
-		player.queueTurn((Tools.TURN_LENGTH - player.getVital(EStat.Speed)) + choiceLength);
+		player.queueTurn((Tools.TURN_LENGTH - player.getVital(EnumStat.Speed)) + choiceLength);
 		turnChanged.fire();
 		if (turns.size() > 0) {
 			getChoice();

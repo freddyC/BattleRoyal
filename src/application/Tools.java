@@ -10,8 +10,8 @@ public class Tools {
 	    return randomNum;
 	}
 	
-	public static EElement getRandomElement () {
-		EElement [] a = {EElement.Fire, EElement.Water, EElement.Wind, EElement.Earth};
+	public static EnumElement getRandomElement () {
+		EnumElement [] a = {EnumElement.Fire, EnumElement.Water, EnumElement.Wind, EnumElement.Earth};
 		return a[randomInt(0,3)];
 	}
 
