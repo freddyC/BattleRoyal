@@ -21,20 +21,30 @@ public class ActionAttack extends Action implements GameData {
 	
 	private void calcAttackerToSword () {
 		int damage = Tools.randomInt(5, 15);
-		damage *= effect.getAttackRes(attacker.getElement(), attacker.getWeaponAffinity());
+		damage *= calcRes(effect.getElementalCoupling(attacker.getElement(), attacker.getWeaponAffinity()));
 		finalDamage += damage;
 	}
 	
 	private void calcAttackeeToArmor () {
 		int damage = Tools.randomInt(5, 15);
-		damage *= effect.getAttackRes(attackee.getElement(), attackee.getWeaponAffinity());
+		damage *= calcRes(effect.getElementalCoupling(attackee.getElement(), attackee.getWeaponAffinity()));
 		finalDamage -= damage;
 	}
 	
 	private void calcAttackerToAttackeeEquipment () {
 		int damage = Tools.randomInt(5, 15);
-		damage *= effect.getAttackRes(attacker.getWeaponAffinity(), attackee.getWeaponAffinity());
+		damage *= calcRes(effect.getElementalCoupling(attacker.getWeaponAffinity(), attackee.getWeaponAffinity()));
 		finalDamage += damage;
+	}
+	
+	private double calcRes (int res) {
+		if (res > 0) {
+			return 1.5;
+		}
+		if (res < 0) {
+			return .5;
+		}
+		return 1;
 	}
 	
 	public int getDamage() {

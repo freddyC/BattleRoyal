@@ -88,10 +88,4 @@ public class ElementCoupling {
 	public String getCouplingText (EnumElement actioner, EnumElement actionee) {
 		return (couplingText.get(actioner)).get(actionee);
 	}
-
-
-	public int getAttackRes(EnumElement element, Object swordAffinity) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }
